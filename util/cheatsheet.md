@@ -80,3 +80,47 @@ For another example, run built-in GUI application
 $ ryu-manager --observe-links ryu.app.gui_topology.gui_topology
 ```
 Note: Access `http://<ryu-ip>:8080` with your web browser
+
+## Ryu REST API
+**1. Add flow entry**
+```
+$ curl -X POST http://<ryu-ip>:8080/stats/flowentry/add -d '{ <flow-entry> }'
+```
+For example, add a flow entry outputting to NORMAL port
+```
+$ curl -X POST http://localhost:8080/stats/flowentry/add -d '{ \
+    "dpid": 1, \
+    "priority": 1000, \
+    "actions": [ { "type": "OUTPUT", "port": "NORMAL" } ] \
+}'
+```
+For another example, add a flow entry with priority `1000` which matching Ethernet destination address `F6:DB:E3:88:DE:2C` and outputting to port `1` on bridge `s1`
+```
+curl -X POST http://localhost:8080/stats/flowentry/add -d '{ \
+    "dpid": 1, \
+    "priority": 1000, \
+    "match": { \
+        "eth_dst": "f6:db:e3:88:de:2c" \
+    }, \
+    "actions": [ { "type": "OUTPUT", "port": 1 } ] \
+}'
+```
+
+**2. Delete flow entry**
+```
+$ curl -X POST http://<ryu-ip>:8080/stats/flowentry/delete -d '{ <flow-entry> }'
+```
+For example, delete flow entry outputting to NORMAL port
+```
+$ curl -X POST http://localhost:8080/stats/flowentry/delete -d '{ \
+    "dpid": 1, \
+    "priority": 1000, \
+    "actions": [ { "type": "OUTPUT", "port": "NORMAL" } ] \
+}'
+```
+For another example, delete all flow entries on bridge `1`
+```
+$ curl -X POST http://localhost:8080/stats/flowentry/delete -d '{ \
+    "dpid": 1, \
+}'
+```
