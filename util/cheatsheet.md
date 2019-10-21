@@ -54,9 +54,9 @@ For example, add a flow entry simply using traditional non-OpenFlow pipeline and
 ```
 $ ovs-ofctl add-flow s1 actions=normal
 ```
-For another example, add a flow entry with priority `1000` which matching Ethernet source address `F6:DB:E3:88:DE:2C` and outputting to port `2` on bridge `s1`
+For another example, add a flow entry with priority `1000` which matching Ethernet destination address `F6:DB:E3:88:DE:2C` and outputting to port `1` on bridge `s1`
 ```
-$ ovs-ofctl add-flow s1 priority=1000,eth_src=f6:db:e3:88:de:2c,actions=output:2
+$ ovs-ofctl add-flow s1 priority=1000,eth_dst=f6:db:e3:88:de:2c,actions=output:1
 ```
 
 **4. Delete all or single flow entry from switch's table**
