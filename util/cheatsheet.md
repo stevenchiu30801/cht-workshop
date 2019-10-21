@@ -75,3 +75,8 @@ For example, run built-in application which providing REST API, and path service
 ```
 $ ryu-manager ryu.app.ofctl_rest exercises/2-path-service/path_service.py
 ```
+For another example, run built-in GUI application
+```
+$ ryu-manager --observe-links ryu.app.gui_topology.gui_topology
+```
+Note: Access `http://<ryu-ip>:8080` with your web browser
