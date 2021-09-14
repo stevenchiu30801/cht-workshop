@@ -62,6 +62,10 @@ For another example, add a flow entry with priority `1000` which matching Ethern
 ```
 $ ovs-ofctl add-flow s1 priority=1000,eth_dst=f6:db:e3:88:de:2c,actions=output:1
 ```
+For another example, add a flow entry which matching Ethernet broadcast address and outputting to both port `1` and `2` on bridge `s1`
+```
+$ ovs-ofctl add-flow s1 eth_dst=ff:ff:ff:ff:ff:ff,actions=output:1,output:2
+```
 
 **4. Delete all or single flow entry from switch's table**
 ```
